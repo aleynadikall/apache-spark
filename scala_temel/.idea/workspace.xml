@@ -13,18 +13,6 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/scalaTemel/DataTypes.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1565">
-              <caret line="98" column="74" selection-start-line="98" selection-start-column="74" selection-end-line="98" selection-end-column="74" />
-              <folding>
-                <element signature="e#20#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/scalaTemel/Maths.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-289">
@@ -96,11 +84,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/scalaTemel/Maps.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="392">
               <caret line="97" column="3" selection-start-line="97" selection-start-column="3" selection-end-line="97" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/scalaTemel/Tuples.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -132,6 +129,7 @@
         <option value="$PROJECT_DIR$/src/main/scala/scalaTemel/Functions.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/scalaTemel/RandomNumbers.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/scalaTemel/Maps.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/scalaTemel/Tuples.scala" />
       </list>
     </option>
   </component>
@@ -208,7 +206,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1674757839322" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1674757897826" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RunDashboard">
@@ -401,6 +399,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
           <caret line="97" column="3" selection-start-line="97" selection-start-column="3" selection-end-line="97" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/scalaTemel/Tuples.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
         </state>
       </provider>
     </entry>
