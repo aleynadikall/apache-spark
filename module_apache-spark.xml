@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_apache-spark" default="compile.module.apache-spark">
+  <dirname property="module.apache-spark.basedir" file="${ant.file.module_apache-spark}"/>
+  
+  <property name="module.jdk.home.apache-spark" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.apache-spark" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.apache-spark" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.apache-spark" value="-encoding UTF-8 -source 5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="apache-spark.output.dir" value="${module.apache-spark.basedir}/target/classes"/>
+  <property name="apache-spark.testoutput.dir" value="${module.apache-spark.basedir}/target/test-classes"/>
+  
+  <path id="apache-spark.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="apache-spark.module.production.classpath">
+    <path refid="${module.jdk.classpath.apache-spark}"/>
+    <path refid="library.scala-sdk-2.13.10.classpath"/>
+  </path>
+  
+  <path id="apache-spark.runtime.production.module.classpath">
+    <pathelement location="${apache-spark.output.dir}"/>
+    <path refid="library.scala-sdk-2.13.10.classpath"/>
+  </path>
+  
+  <path id="apache-spark.module.classpath">
+    <path refid="${module.jdk.classpath.apache-spark}"/>
+    <pathelement location="${apache-spark.output.dir}"/>
+    <path refid="library.scala-sdk-2.13.10.classpath"/>
+  </path>
+  
+  <path id="apache-spark.runtime.module.classpath">
+    <pathelement location="${apache-spark.testoutput.dir}"/>
+    <pathelement location="${apache-spark.output.dir}"/>
+    <path refid="library.scala-sdk-2.13.10.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.apache-spark">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.apache-spark">
+    <patternset refid="excluded.from.module.apache-spark"/>
+  </patternset>
+  
+  <path id="apache-spark.module.sourcepath">
+    <dirset dir="${module.apache-spark.basedir}">
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="apache-spark.module.test.sourcepath">
+    <dirset dir="${module.apache-spark.basedir}">
+      <include name="src/test/scala"/>
+      <include name="src/main/scala"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.apache-spark" depends="compile.module.apache-spark.production,compile.module.apache-spark.tests" description="Compile module apache-spark"/>
+  
+  <target name="compile.module.apache-spark.production" depends="register.custom.compilers" description="Compile module apache-spark; production classes">
+    <mkdir dir="${apache-spark.output.dir}"/>
+    <javac2 destdir="${apache-spark.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.apache-spark}/javac">
+      <compilerarg line="${compiler.args.apache-spark}"/>
+      <bootclasspath refid="apache-spark.module.bootclasspath"/>
+      <classpath refid="apache-spark.module.production.classpath"/>
+      <src refid="apache-spark.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.apache-spark"/>
+    </javac2>
+    
+    <copy todir="${apache-spark.output.dir}">
+      <fileset dir="${module.apache-spark.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.apache-spark.tests" depends="register.custom.compilers,compile.module.apache-spark.production" description="compile module apache-spark; test classes" unless="skip.tests">
+    <mkdir dir="${apache-spark.testoutput.dir}"/>
+    <javac2 destdir="${apache-spark.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.apache-spark}/javac">
+      <compilerarg line="${compiler.args.apache-spark}"/>
+      <bootclasspath refid="apache-spark.module.bootclasspath"/>
+      <classpath refid="apache-spark.module.classpath"/>
+      <src refid="apache-spark.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.apache-spark"/>
+    </javac2>
+    
+    <copy todir="${apache-spark.testoutput.dir}">
+      <fileset dir="${module.apache-spark.basedir}/src/test/scala">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.apache-spark.basedir}/src/main/scala">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.apache-spark" description="cleanup module">
+    <delete dir="${apache-spark.output.dir}"/>
+    <delete dir="${apache-spark.testoutput.dir}"/>
+  </target>
+</project>
